@@ -8,7 +8,7 @@ class Mesh;
 class Element
 {	
 private:
-	Mesh& mesh_;
+	Mesh& _mesh;
 public:
 	Node &node_0, &node_1;
 	const double k;

@@ -3,7 +3,7 @@
 
 class Node
 {
-	const NodeType type_;
+	const NodeType _type;
 public:
 	const double x;
 	const int ID;

@@ -7,7 +7,7 @@
 
 class LinearSystem
 {
-	const double eps_;
+	const double _eps;
 	std::vector<std::vector<double>> M;
 	std::vector<double> b,Xn;
 	void checkDiagonalDominance();

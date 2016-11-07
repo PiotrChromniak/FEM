@@ -84,7 +84,7 @@ void LinearSystem::solveGauss()
 	for (unsigned int k = 0; k < M.size() + 1; k++) {
 		for (unsigned int i = 1 + k; i < M.size(); i++)
 		{
-			if (fabs(M[k][k] < eps_)) throw 1.0;
+			if (fabs(M[k][k] < _eps)) throw 1.0;
 			double coefficient = M[i][k] / M[k][k];
 			for (unsigned int j = k; j < M[i].size(); j++)
 				M[i][j] -= coefficient * M[k][j];
@@ -111,7 +111,7 @@ void LinearSystem::solveGauss()
 			for (int j = b.size() - 1; j > b.size() - k; j--) {
 				eq -= X[j] * M[i][j];
 			}
-			if (fabs(M[i][i] < eps_)) throw 1.0;
+			if (fabs(M[i][i] < _eps)) throw 1.0;
 			X[i] = eq / M[i][i];
 		}
 	}
@@ -325,5 +325,5 @@ void LinearSystem::checkDiagonalDominance()
 	std::cout << "\nMacierz M jest diagonalnie dominujaca.\n";
 }
 
-LinearSystem::LinearSystem() : eps_(1e-12)
+LinearSystem::LinearSystem() : _eps(1e-12)
 {}
