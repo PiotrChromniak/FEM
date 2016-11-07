@@ -1,0 +1,56 @@
+5
+0 0.0 0
+1 1.25 1
+2 2.5 1
+3 3.75 1
+4 5.0 2
+
+4
+0 1 50.0
+1 2 50.0
+2 3 50.0
+3 4 50.0
+
+-150 2 10 400
+
+
+3
+0 0.0 0
+1 2.5 1
+2 5.0 2
+
+2
+0 1 50.0
+1 2 50.0
+
+-150 2 10 400
+
+3
+0 2.5 1
+1 5.0 2
+2 0.0 0
+
+2
+2 0 50.0
+0 1 50.0
+
+
+-150 2 10 400
+
+
+
+
+
+
+// Oryginalny przyk³ad na 3 wêz³ach, wy¿ej ten sam na 5 wêz³ach
+/* INPUT SCHEME:
+iloœæ wêz³ów
+ID wêz³a, x wêz³a, typ wêz³a (warunek brzegowy 0 - wjeœcie, 1 poœredni, 2 wyjœcie czyli konwekcja) x iloœæ wêz³ów
+
+iloœæ elementów
+1 ID wêz³a, 2 ID wêz³a, wspó³czynnik k przewodzenia ciep³a elementu x iloœæ elementów (UWAGA w 1D iloœæ elementów jest œciœle zwi¹zana z iloœci¹ wêz³ów - elementy = wêz³y-1, nie ma walidacji mo¿e wyjebaæ szambo elo xD)
+
+na koñcu warunek brzegowy:
+strumieñ ciep³a Q; przekrój prêta S, wspó³czynnik konwekcji alfa; temperatura otoczenia t;
+*/
+
