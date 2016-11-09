@@ -93,7 +93,7 @@ void Mesh::proceedSolving()
 	//std::vector<double> ans = solver.getAnsVector();
 	//solver.swapResources(H,P);
 
-	auto ans = LinearSystem::tmpGauss(H, P);
+	auto ans = LinearSystem::solveGauss(H, P);
 	std::cout << "Metoda eliminacji Gaussa:\n";
 	for (const auto& node : nodeVect)
 		std::cout << "\nt" << node.ID << " = " << ans[node.ID];
