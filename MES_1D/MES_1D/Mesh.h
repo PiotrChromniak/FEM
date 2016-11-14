@@ -6,6 +6,7 @@
 
 class Mesh
 {
+	void logToFile(std::fstream&, std::vector<double>&);
 public:
 	double q, S, alpha, ambientTemp;
 	std::vector<Node> nodeVect;

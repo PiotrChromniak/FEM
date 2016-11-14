@@ -93,11 +93,16 @@ void Mesh::proceedSolving()
 	//std::vector<double> ans = solver.getAnsVector();
 	//solver.swapResources(H,P);
 
-	auto ans = LinearSystem::solveGauss(H, P);
+	auto answer = LinearSystem::solveGauss(H, P);
 	std::cout << "Metoda eliminacji Gaussa:\n";
 	for (const auto& node : nodeVect)
-		std::cout << "\nt" << node.ID << " = " << ans[node.ID];
+		std::cout << "\nt" << node.ID << " = " << answer[node.ID];
 	std::cout << '\n';
+	std::fstream log("log.txt", std::ios::out);
+	if (log.good())
+		logToFile(log, answer);
+	else
+		throw std::runtime_error("Couldn't make log file.");
 }
 
 void Mesh::proceedSolvingIterational(int iterations)
@@ -107,4 +112,10 @@ void Mesh::proceedSolvingIterational(int iterations)
 	//solver.solveJacobi(iterations);
 	//std::vector<double> ans = solver.getAnsVector();
 	//solver.swapResources(H, P);
+}
+
+void Mesh::logToFile(std::fstream &file, std::vector<double> &ans)
+{
+	for (const auto& partOfVector : ans)
+		file << partOfVector << '\n';
 }
