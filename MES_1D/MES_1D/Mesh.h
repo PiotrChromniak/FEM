@@ -18,5 +18,5 @@ public:
 	void calculateLocalMatrices();
 	void mergeMatrices();
 	void proceedSolving();
-	void proceedSolvingIterational(int = 100);
+	void proceedSolvingJacobi(int = 100);
 };

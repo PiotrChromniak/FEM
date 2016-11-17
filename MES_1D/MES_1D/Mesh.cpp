@@ -30,7 +30,7 @@ void Mesh::loadFromFile(const char *fileName)
 			nodeVect.push_back(Node(t_ID, t_x, t_nodeType));
 		}
 
-		/* Wczytywanie elementów - korzystaj¹ z referencji do juz istniej¹cych node'ów w nodeVec[] */
+		/* Wczytywanie elementów - korzystaj¹ z referencji do juz istniej¹cych node'ów w nodeVect[] */
 		int elementNum, t_ID1, t_ID2;
 		double t_S;
 		file >> elementNum;
@@ -73,11 +73,6 @@ void Mesh::mergeMatrices()
 
 
 	/* Przygotowanie macierzy do obliczeñ w bibliotece LinearSystem */
-	//std::vector<double>::iterator P_it = P.begin(), migrate_it;
-	//for (auto H_it = H.begin(); P_it != P.end();  ++H_it, ++P_it) {
-	//	migrate_it = H_it->end() - 1;
-	//	*migrate_it = -(*P_it);
-	//}
 	auto P_it = P.cbegin();
 	std::vector<double>::iterator lastInRow;
 	for (auto& row : H) {
@@ -89,12 +84,6 @@ void Mesh::mergeMatrices()
 
 void Mesh::proceedSolving()
 {
-	/* zamienianie macierzy i wektora obci¹¿eñ z obiektem LinearSystem solver */
-	//solver.swapResources(H, P);
-	//solver.solveGauss();
-	//std::vector<double> ans = solver.getAnsVector();
-	//solver.swapResources(H,P);
-
 	auto answer = LinearSystem::solveGauss(H, P);
 	std::cout << "Metoda eliminacji Gaussa:\n";
 	for (const auto& node : nodeVect)
@@ -107,13 +96,9 @@ void Mesh::proceedSolving()
 		throw std::runtime_error("Couldn't make log file.");
 }
 
-void Mesh::proceedSolvingIterational(int iterations)
+void Mesh::proceedSolvingJacobi(int iterations)
 {
-	//solver.swapResources(H, P);
-	//solver.setZeroStartVec();
-	//solver.solveJacobi(iterations);
-	//std::vector<double> ans = solver.getAnsVector();
-	//solver.swapResources(H, P);
+	/* TODO */
 }
 
 void Mesh::logToFile(std::fstream &file, std::vector<double> &ans)
