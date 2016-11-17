@@ -49,7 +49,7 @@ std::vector<double> LinearSystem::solveJacobi(std::vector<std::vector<double>> &
 		M[i][i] = 0.0;
 	}
 
-	//  M_0 = (U+L) x invD - oszczêdzamy sobie mno¿enia na pizdeczke za ka¿dym razem 
+	//  M_0 = (U+L) x invD - oszczêdzamy sobie mno¿enia na pa³e za ka¿dym razem 
 	//	V_0 = invD x b jak wy¿ej 
 	std::vector<std::vector<double>> M_0(M.size(), std::vector<double>(M.size()));
 	std::vector<double> V_0(M.size());

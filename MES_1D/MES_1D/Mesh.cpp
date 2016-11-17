@@ -6,16 +6,16 @@ void Mesh::loadFromFile(const char *fileName)
 	std::fstream file;
 	file.open(fileName, std::ios::in);
 	if (file.good()) {
-		int nNode;
-		file >> nNode;
-		nodeVect.reserve(nNode);
+		int nodeNum;
+		file >> nodeNum;
+		nodeVect.reserve(nodeNum);
 
 		double t_x;
-		int t_ID0, t_ID1, t_type;
+		int t_ID, t_type;
 
 		/* Wczytywanie node'ów */
-		for (int i = 0; i < nNode; ++i) {
-			file >> t_ID0 >> t_x >> t_type;
+		for (int i = 0; i < nodeNum; ++i) {
+			file >> t_ID >> t_x >> t_type;
 			NodeType t_nodeType = [&]() {
 				switch (t_type) {
 					case 0:
@@ -27,19 +27,21 @@ void Mesh::loadFromFile(const char *fileName)
 				}
 			}();
 
-			nodeVect.push_back(Node(t_ID0, t_x, t_nodeType));
+			nodeVect.push_back(Node(t_ID, t_x, t_nodeType));
 		}
 
 		/* Wczytywanie elementów - korzystaj¹ z referencji do juz istniej¹cych node'ów w nodeVec[] */
-		file >> nNode;						// tak naprawdê to nElement
-		elemVect.reserve(nNode);
-		for (int i = 0; i < nNode; ++i) {
-			file >> t_ID0 >> t_ID1 >> t_x;		// t_x to tutaj wspó³czynnik k elementu
-			elemVect.push_back(Element(*this, nodeVect[t_ID0], nodeVect[t_ID1], t_x));
+		int elementNum, t_ID1, t_ID2;
+		double t_S;
+		file >> elementNum;
+		elemVect.reserve(elementNum);
+		for (int i = 0; i < elementNum; ++i) {
+			file >> t_ID1 >> t_ID2 >> t_x >> t_S;		// t_x to tutaj wspó³czynnik k elementu
+			elemVect.push_back(Element(*this, nodeVect[t_ID1], nodeVect[t_ID2], t_x, t_S));
 		}
 
 		/* Wczytywanie warunków brzegowych */
-		file >> q >> S >> alpha >> ambientTemp;
+		file >> q >> alpha >> ambientTemp;
 
 		file.close();
 	}
@@ -116,6 +118,6 @@ void Mesh::proceedSolvingIterational(int iterations)
 
 void Mesh::logToFile(std::fstream &file, std::vector<double> &ans)
 {
-	for (const auto& partOfVector : ans)
+	for (auto const& partOfVector : ans)
 		file << partOfVector << '\n';
 }

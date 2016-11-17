@@ -8,7 +8,7 @@ class Mesh
 {
 	void logToFile(std::fstream&, std::vector<double>&);
 public:
-	double q, S, alpha, ambientTemp;
+	double q, alpha, ambientTemp;
 	std::vector<Node> nodeVect;
 	std::vector<Element> elemVect;
 	std::vector<std::vector<double>> H;
